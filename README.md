@@ -15,10 +15,15 @@
 5. Należy mieć zainstalowanego Firefox'a
 
 ## Uruchomienie testów (linux)
+Zmienna środowiskowa `PROJECT_PATH` powinna zawierać ścieżkę do testowanego projektu (domyślna wartość `../moje1`). Wykonanie z domyślną ścieżką
 ```
 ./test.sh
 ```
-(po ewentualnym uprzednim nadaniu plikowi odpowiednich praw do wykonania)
+Wykonanie z inną ścieżką
+```
+PROJECT_PATH="../projekt" ./test.sh
+```
+(po ewentualnym uprzednim nadaniu plikowi `test.sh` odpowiednich praw do wykonania)
 
 ## Rozwijanie
 Elastycznie: testy można dodawać albo jako testy pytest, albo bezpośrednio do pliku `test.sh`
