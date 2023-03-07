@@ -1,0 +1,7 @@
+.pytest_cache
+.venv
+.vscode
+geckodriver.log
+test.png
+test2.png
+**/__pycache__
