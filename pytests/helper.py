@@ -14,6 +14,10 @@ def get_html_paths():
     return get_by_ext('html') + get_by_ext('htm')
 
 
+def get_url():
+    return 'file://' + os.path.abspath(get_html_paths()[0])
+
+
 def get_css_paths():
     return get_by_ext('css')
 

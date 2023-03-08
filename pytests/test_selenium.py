@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 import pytest
 from typing import Iterator
+from helper import get_url
 
 
 def get_firefox_driver() -> WebDriver:
@@ -35,6 +36,11 @@ def test_eight_components(driver: WebDriver):
 
     message = driver.find_element(by=By.ID, value="message")
     value = message.text
+    assert value == "Received!"
+
+
+def test_resizing_is_smooth(driver: WebDriver):
+    driver.get(get_url())
     driver.set_window_position(0, 0)
     driver.set_window_size(1024, 768)
     driver.save_screenshot("test.png")
@@ -44,4 +50,3 @@ def test_eight_components(driver: WebDriver):
     driver.save_screenshot("test2.png")
     for i in range(30):
         driver.set_window_size(1280 + 16 * i, 720 + 9 * i)
-    assert value == "Received!"
