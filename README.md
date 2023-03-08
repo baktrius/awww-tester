@@ -1,7 +1,13 @@
 # Tester projektu z AWWW
+## Wymagania
+- Firefox
+- Python3
+- Nodejs
+(Spełnione na students)
 ## Instalacja
 
 1. Pobierz kod projektu
+   Można pobrać paczkę `.zip` bezpośrednio z github'a lub sklonować repozytorium (jeśli chcemy projekt rozwijać). W celu sklonowania repozytorium można użyć komendy `git clone https://github.com/baktrius/awww-tester.git` (klonowanie do bieżącego katalogu - cały projekt będzie w folderze `awww-tester`). Należy dalej przejść do katalogu projektu
 2. Należy utworzyć środowisko wirtualne pythona3 i je aktywować (w katalogu projektu)
     ```
     python3 -m virtualenv .venv
@@ -11,8 +17,10 @@
     ```
     pip install -r requirements.txt
     ```
-4. Należy zainstalować globalnie narzędzie [html-validator](https://www.npmjs.com/package/html-validate) (wymaga nodejs)
-5. Należy mieć zainstalowanego Firefox'a
+4. Należy zainstalować wymagane zależności nodejs za pomocą
+   ```
+   npm install
+   ```
 
 ## Uruchomienie testów (linux)
 Zmienna środowiskowa `PROJECT_PATH` powinna zawierać ścieżkę do testowanego projektu (domyślna wartość `../moje1`). Wykonanie z domyślną ścieżką

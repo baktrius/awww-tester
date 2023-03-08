@@ -5,3 +5,5 @@ geckodriver.log
 test.png
 test2.png
 **/__pycache__
+node_modules
+package-lock.json
