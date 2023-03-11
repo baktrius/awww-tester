@@ -2,7 +2,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 import pytest
 from typing import Iterator
-from helper import get_url
+from helper import get_url, report
+
+
+RES1024X768 = "res1024x768.png"
+RES1280X720 = "res1280x720.png"
 
 
 def get_firefox_driver() -> WebDriver:
@@ -43,10 +47,11 @@ def test_resizing_is_smooth(driver: WebDriver):
     driver.get(get_url())
     driver.set_window_position(0, 0)
     driver.set_window_size(1024, 768)
-    driver.save_screenshot("test.png")
+    driver.save_screenshot(RES1024X768)
     for i in range(50):
         driver.set_window_size(1024 + 4 * i, 768 + 3 * i)
     driver.set_window_size(1280, 720)
-    driver.save_screenshot("test2.png")
+    driver.save_screenshot(RES1280X720)
     for i in range(30):
         driver.set_window_size(1280 + 16 * i, 720 + 9 * i)
+    report([RES1024X768, RES1280X720])
