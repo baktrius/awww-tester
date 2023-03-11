@@ -39,3 +39,15 @@ def test_dark_mode(driver: WebDriver):
     document.documentElement.classList.add('darkmode')
     document.documentElement.classList.remove('lightmode')""")
     time.sleep(1)
+
+
+def test_small_resolution(driver: WebDriver):
+    driver.get(get_url())
+    driver.set_window_size(400, 600)
+    time.sleep(2)
+    driver.set_window_size(500, 700)
+    time.sleep(2)
+    driver.set_window_size(800, 1000)
+    time.sleep(2)
+    driver.set_window_size(1000, 800)
+    time.sleep(2)

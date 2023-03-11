@@ -28,7 +28,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 import pytest
-from helper import get_css_absolute_paths
+from helper import get_css_absolute_paths, fd_input
 
 """
     Function used to wait for a page (for example one that was navigated to)
@@ -88,6 +88,7 @@ def test_css_w3c(driver: WebDriver):
         assert len(congrats_elements) <= 1  # sanity check
         if len(congrats_elements) == 0:
             # TODO: possible improvement - how many errors, first error.
+            fd_input("press enter to continue")
             pytest.fail(f"W3C doesn't approve file {file}")
 
         # Debug: WebDriverWait(driver, timeout=10).until(never)
@@ -170,6 +171,7 @@ def test_css_w3c_strict(driver: WebDriver, threshold=1):
         assert len(congrats_elements) <= 1  # sanity check
         if len(congrats_elements) == 0:
             # TODO: possible improvement - how many errors, first error.
+            fd_input("press enter to continue")
             pytest.fail(f"W3C doesn't approve file {file}")
 
         # TODO TODO TODO: deduplicate code above by using repeated code
@@ -206,6 +208,7 @@ def test_css_w3c_strict(driver: WebDriver, threshold=1):
         if highest_level >= threshold:
             # TODO: is there a better place to print detailed messages in pytest?
             # Here \x0a stands for \n, because \n doesn't work.
+            fd_input("press enter to continue")
             pytest.fail(
                 f"for file {file}\x0aW3C gives {above_threshold_count} "
                 f"warnings of level >= {threshold}, {highest_level_count} "

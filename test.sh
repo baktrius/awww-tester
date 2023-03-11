@@ -12,6 +12,3 @@ source .venv/bin/activate
 
 echo "Running pytest tests suite"
 pytest pytests --capture=sys
-
-echo "Validating html files using html-validate"
-npx html-validate $PROJECT_PATH/**/*.htm $PROJECT_PATH/**/*.html

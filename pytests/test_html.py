@@ -1,7 +1,8 @@
 
 from subprocess import run
-from helper import PROJECT_PATH
+from helper import get_html_paths
 
 
 def test_html_is_valid():
-    assert run(f"npx html-validate {PROJECT_PATH}/*", shell=True).returncode == 0
+    cmd = f"npx html-validate {' '.join(get_html_paths())}"
+    assert run(cmd, shell=True).returncode == 0
