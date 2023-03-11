@@ -1,6 +1,8 @@
 import os
 from glob import glob
 import subprocess
+from sys import stderr
+import tempfile
 
 PROJECT_PATH = os.environ.get('PROJECT_PATH', '../moje1')
 # Make tilde in path work:
@@ -10,10 +12,18 @@ REPORT = os.environ.get('REPORT', '1')
 
 
 def report(paths: list[str]):
-    # just to be on a safe side convert every path to absolute
-    paths = [os.path.abspath(path) for path in paths]
+    print(REPORT, file=stderr)
     if REPORT == '1':
-        subprocess.run("code -r -w " + " ".join(paths), shell=True)
+        # just to be on a safe side convert every path to absolute
+        paths = [os.path.abspath(path) for path in paths]
+        subprocess.run("code -n -w " + " ".join(paths), shell=True)
+
+
+def report_file(recipe, *args, **kwargs):
+    if REPORT == '1':
+        with tempfile.NamedTemporaryFile(*args, **kwargs) as f:
+            recipe(f.name)
+            report([f.name])
 
 
 def get_by_ext(ext: str) -> list[str]:
@@ -40,6 +50,15 @@ def get_css_paths():
 
 def get_css_absolute_paths():
     return get_css_paths()
+
+
+def fd_input(prompt):
+    # Based on https://github.com/pytest-dev/pytest/issues/5053#issuecomment-484921801
+    with os.fdopen(os.dup(1), "w") as stdout:
+        stdout.write("\n{}".format(prompt))
+
+    with os.fdopen(os.dup(2), "r") as stdin:
+        return stdin.readline()
 
 
 if __name__ == '__main__':
