@@ -4,12 +4,15 @@
 ##  Module containing tests checking correctness of CSS code, utilizing vali-  #
 ##  dation service provided by W3C at https://jigsaw.w3.org/css-validator/ .   #
 ##                                                                             #
-##  Notably, provided tests depend on get_css_paths() function                 #
+##  Notably, provided tests depend on get_css_absolute_paths() function        #
 ##  from the utils module.                                                     #
 ##                                                                             #
 ##  Asserts failing mean that something unexpected has happened (perhaps       #
 ##  something on the page changed) and are to be treated as tests errors       #
 ##  (as opposed to test fails), inspected and fixed.                           #
+##                                                                             #
+##  TODO: don't run the second test if the first fails (it will fail in the    #
+##  exact same way).                                                           #
 ##                                                                             #
 ################################################################################
                                                                                #
@@ -26,7 +29,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
 import pytest
 from typing import Iterator
-from helper import get_css_paths
+from helper import get_css_absolute_paths
 
 # TODO: this next section is copied from test_selenium.py
 # it is to be organized in a better way by someone who knows python well
@@ -69,7 +72,7 @@ def document_initialised(driver):
 """
 def test_css_w3c(driver: WebDriver):
     # TODO: lots of code shared with test_css_w3c_strict - deduplicate!
-    files_to_check = get_css_paths();
+    files_to_check = get_css_absolute_paths();
     for file in files_to_check:
         driver.get("https://jigsaw.w3.org/css-validator/#validate_by_upload")
 
@@ -145,7 +148,7 @@ def w3c_warning_destructure(warning_tr):
 # Potential TODO: disable/ignore unimportant warnings by changing settings?
 # TODO: lots of shared code - deduplicate!
 def test_css_w3c_strict(driver: WebDriver, threshold=1):
-    files_to_check = get_css_paths();
+    files_to_check = get_css_absolute_paths();
     for file in files_to_check:
         driver.get("https://jigsaw.w3.org/css-validator/#validate_by_upload")
 
