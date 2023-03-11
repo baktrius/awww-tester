@@ -4,11 +4,11 @@ import subprocess
 from sys import stderr
 import tempfile
 
-PROJECT_PATH = os.environ.get('PROJECT_PATH', '../moje1')
+PROJECT_PATH = os.environ.get('PROJECT_PATH', '../grader/project')
 # Make tilde in path work:
 PROJECT_PATH = os.path.expanduser(PROJECT_PATH)
 
-REPORT = os.environ.get('REPORT', '1')
+REPORT = os.environ.get('REPORT', '0')
 
 
 def report(paths: list[str]):

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # setting default value of expected environmental variables
-export PROJECT_PATH="${PROJECT_PATH:-../moje1}"
+export PROJECT_PATH="${PROJECT_PATH:-../grader/project}"
 export REPORT="${REPORT:-0}"
 
 # seting cwd to itself
