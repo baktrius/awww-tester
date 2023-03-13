@@ -34,7 +34,7 @@ source install.sh
 ```
 Zwracam uwagę na użycie instrukcji `source`. Powoduje ona uruchomienie skryptu przekazanego jako pierwszy parametr a następnie ustawienie środowiska zmiennych shela na środowisko zmiennych z wykonanego skryptu (dzięki temu automatycznie aktywuje nam się środowisko wirtualne pythona w shelu).
 ## Uruchomienie testów (linux)
-Zmienna środowiskowa `PROJECT_PATH` powinna zawierać ścieżkę do testowanego projektu (domyślna wartość `../moje1`). Wykonanie z domyślną ścieżką
+Zmienna środowiskowa `PROJECT_PATH` powinna zawierać ścieżkę do testowanego projektu (domyślna wartość `../grader/project`). Wykonanie z domyślną ścieżką
 ```
 ./test.sh
 ```
