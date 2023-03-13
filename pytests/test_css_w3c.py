@@ -81,15 +81,16 @@ def test_css_w3c(driver: WebDriver):
         WebDriverWait(driver, timeout=10)   \
             .until(lambda d: d.find_element(by=By.ID, value="results_container"))
 
-        # Note: find_elements() is used, so that no exception is thrown
+        # NOTE: find_elements() is used, so that no exception is thrown
         # in case no such element exists.
-        # Would catching the exception be a better aproach? TODO
+        # Would catching the exception be a better aproach? 
+        # TODO: check.
         congrats_elements = driver.find_elements(by=By.ID, value="congrats")
         assert len(congrats_elements) <= 1  # sanity check
         if len(congrats_elements) == 0:
             # TODO: possible improvement - how many errors, first error.
-            fd_input("press enter to continue")
-            pytest.fail(f"W3C doesn't approve file {file}")
+            fd_input("Press enter to continue...")
+            pytest.fail(f"W3C css validation failed for {file}.")
 
         # Debug: WebDriverWait(driver, timeout=10).until(never)
 
